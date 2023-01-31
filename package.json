@@ -1,0 +1,34 @@
+{
+  "name": "Desafio_Fullsatck_m6_Backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:marcuspvh/Desafio_Fullsatck_m6_Backend.git",
+  "author": "Marcus <marcuspvh@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --ignore-watch node_modules src/app.ts"
+  },
+  "dependencies": {
+    "@types/uuid": "^9.0.0",
+    "bcrypt": "^5.1.0",
+    "class-transformer": "^0.5.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "pg": "^8.9.0",
+    "reflect-metadata": "^0.1.13",
+    "schema-to-yup": "^1.12.9",
+    "typeorm": "^0.3.11",
+    "uuid": "^9.0.0",
+    "uuidv4": "^6.2.13"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.16",
+    "@types/jsonwebtoken": "^9.0.1",
+    "nodemon": "^2.0.20",
+    "sucrase": "^3.29.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.4"
+  }
+}
