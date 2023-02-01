@@ -13,7 +13,9 @@ const userUpdateSchema: SchemaOf<IUserUpdateRequest> = yup.object().shape({
     telephone: yup
         .string(),
     password: yup
-        .string()
+        .string(),
+    isActive: yup
+        .boolean()
    
 })
 

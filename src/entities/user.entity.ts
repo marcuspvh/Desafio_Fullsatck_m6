@@ -21,7 +21,7 @@ telephone: string
 @Exclude()
 password: string
 
-@Column()
+@Column({default: false})
 isAdm: boolean
 
 @Column({default: true})
@@ -33,7 +33,7 @@ createdAt: Date
 @UpdateDateColumn()
 updatedAt: Date
 
-@OneToMany(()=>Contacts, contacts=> contacts.user)
+@OneToMany(()=>Contacts, (contacts)=> contacts.user)
 contacts: Contacts[]
 
 

@@ -1,0 +1,119 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Manunteção de Clientes e Contatos de Clientes",
+        "descriptions": "Essa API tem como objetivo, criar um cadastro de clientes que poderá conter muitos contatos associados. ",
+        "version": "1.0.0"
+    },
+    "basePath": "/",
+    "paths":{
+        "/users": {
+            "post":{
+                "summary": "Cadatsro de Clientes",
+                "description": "Rota responsavem por cadastrar novos clientes",
+                "tags": ["User"],
+                "requestBody":{
+                    "content":{
+                        "aplication/json":{
+                            "schema": {
+                                "$ref": "#/components/schema/UserRequest"
+                            },
+                            "examples":{
+                                "user":{
+                                    "value":{ 
+                                    "name": "Marcus Cliente 01",
+                                    "email": "marcuscliente01@gmail.com",
+                                    "telephone": "981158855",
+                                    "password": "123456"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "400":{
+                        "description": "Email already exists"
+                    },
+                    "200":{
+                        "description": "Ok",
+                        "content":{
+                            "aplication/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schema/UserResponse"
+                                },
+                                "examples":{
+                                    "user":{
+                                        "value":{ 
+                                        "name": "Marcus Cliente 01",
+                                        "email": "marcuscliente01@gmail.com",
+                                        "telephone": "981158855",
+                                        "password": "123456",
+                                        "isAdm": false,
+                                        "isActive": true,
+                                        "createdAt": "2023-02-01T15:32:19.482Z",
+                                        "updatedAt": "2023-02-01T15:32:19.482Z",
+                                        "id": "a1d1829a-7928-4611-aa23-56e2cc46182f"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components":{
+        "schema":{
+            "UserRequest":{
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "types": "string"
+                    },
+                    "email": {
+                        "types": "string"
+                    },
+                    "telephone": {
+                        "types": "string"
+                    },
+                    "password": {
+                        "types": "string"
+                    }
+                }
+            },
+            "UserResponse":{
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "types": "string"
+                    },
+                    "email": {
+                        "types": "string"
+                    },
+                    "telephone": {
+                        "types": "string"
+                    },
+                    "password": {
+                        "types": "string"
+                    },
+                    "isAdm": {
+                        "types": "boolean"
+                    },
+                    "createdAt": {
+                        "types": "Date"
+                    },
+                    "updatedAt": {
+                        "types": "Date"
+                    },
+                    "id": {
+                        "types": "string"
+                    }
+
+                }
+            }
+        }
+    }
+}

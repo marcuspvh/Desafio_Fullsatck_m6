@@ -4,6 +4,7 @@ import { IUserCreate, IUserRequest } from "../../interfaces/users";
 import { v4 as uuidv4} from "uuid";
 import bcrypt from "bcrypt";
 import { AppError } from "../../errors/appError";
+import {Contacts} from "../../entities/contacts.enttty";
 
 
 const userCreateService = async({name, email, telephone, password,isAdm }:IUserCreate): Promise<User> => {
@@ -17,6 +18,7 @@ if(emailAlreadyExists){
     throw new AppError("Email already exists" )
 }
 
+
 const user = new User()
 user.name = name
 user.email = email
@@ -26,6 +28,7 @@ user.isAdm = isAdm
 user.isActive = true
 user.createdAt= new Date()
 user.updatedAt= new Date()
+
 
 userRepository.create(user)
 

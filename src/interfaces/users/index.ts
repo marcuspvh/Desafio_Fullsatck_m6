@@ -4,6 +4,7 @@ export interface IUserRequest {
     telephone: string
     password: string
     isAdm: boolean
+    
 }
 
 export interface IUser {
@@ -34,6 +35,7 @@ export interface IUserUpdateRequest {
     email?: string
     telephone?: string
     password?: string
+    isActive?: boolean
 }
 
 export interface IUserDeleteRequest {
@@ -47,5 +49,13 @@ export interface IUserCreate {
     telephone: string
     password: string
     isAdm: boolean
+    
+}
+
+export interface IUserListContacts {
+    name: string
+    email: string
+    telephone: string
+    
     
 }

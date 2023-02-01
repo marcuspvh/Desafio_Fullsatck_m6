@@ -6,7 +6,7 @@ import { AppError } from "../../errors/appError";
 // import isAdmMiddlewar from "../../middlewares/isAdm.middleware";
 
 
-const updateUserService = async({ name, email, telephone, password }: IUserUpdateRequest, id: string): Promise<IUserUpdateRequest>  => {
+const updateUserService = async({ name, email, telephone, password, isActive }: IUserUpdateRequest, id: string): Promise<IUserUpdateRequest>  => {
 
     const userRepository = AppDataSource.getRepository(User)
 
@@ -27,7 +27,8 @@ const updateUserService = async({ name, email, telephone, password }: IUserUpdat
             name: name ? name : findUser.name,
             email: email ? email : findUser.email,
             telephone: telephone ? telephone : findUser.telephone,
-            password: password ? await hash(password, 10) : findUser.password
+            password: password ? await hash(password, 10) : findUser.password,
+            isActive: isActive ? isActive : findUser.isActive 
         }
     )
 
@@ -36,7 +37,7 @@ const updateUserService = async({ name, email, telephone, password }: IUserUpdat
     })
 
 
-    return {name,email,password}
+    return {name,email,password, isActive}
 
 }
 

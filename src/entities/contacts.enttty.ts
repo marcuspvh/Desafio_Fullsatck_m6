@@ -17,13 +17,6 @@ email: string
 @Column({length: 69})
 telephone: string
 
-@Column({length: 120})
-@Exclude()
-password: string
-
-@Column()
-isAdm: boolean
-
 @Column({default: true})
 isActive: boolean
 
@@ -33,7 +26,9 @@ createdAt: Date
 @UpdateDateColumn()
 updatedAt: Date
 
-@ManyToOne(()=> User,{eager:true})
+@ManyToOne(()=> User)
 user: User
+
+
 
 }
