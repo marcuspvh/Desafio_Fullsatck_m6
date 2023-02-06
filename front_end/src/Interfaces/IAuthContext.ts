@@ -1,11 +1,16 @@
 
-import { IContacts } from "./IContacts";
+// import { Dispatch, SetStateAction } from "react";
 // import { IEditProfile } from "./IEditProfile";
+// import { IReportContacts } from "./IReportContacts";
+import { IContacts } from "./IContacts";
 import { IUser } from "./IUser";
 import { IUserLogin } from "./IUserLogin";
 
+
 export interface IAuthContext {
   user: IUser;
+  token: string;
+  setToken: (state: string) => void;
   onSubmitLogin: (data: IUserLogin) => void;
   login: boolean;
   setLogin: (state: boolean) => void;
@@ -14,13 +19,15 @@ export interface IAuthContext {
   onSubmitRegister: (data: IUser) => void;
   isLoading: boolean;
   setIsLoading: (state: boolean) => void;
-  onSubmitContacts: (data:IContacts) => void;
-  //   isOpenModal: boolean;
-  //   setIsOpenModal: (state: boolean) => void;
-  //   setInputFilter: (state: string) => void;
-  //   filterDoctors: (state: string) => void;
-    //   inputFilter: string;
-    //   EditUserProfile: (data: IEditProfile) => void;
+  contacts: IContacts[];
+  setContacts: (value:IContacts[])=>void;
+  // report: IReportContacts[];
+  // setReport: (state: IReportContacts[]) => void;
+  // report: IReportContacts[];
+  // setReport: Dispatch<SetStateAction<IReportContacts[]>>;
+
+
+  
   
 };
             

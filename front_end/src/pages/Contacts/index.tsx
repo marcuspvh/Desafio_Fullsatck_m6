@@ -6,10 +6,12 @@ import { AuthContext } from "../../context/AuthContext";
 import { ContainerContacts } from "./style";
 import { useNavigate } from "react-router-dom";
 import { IContacts } from "../../Interfaces/IContacts";
+import { ContactsContext } from "../../context/ContactsContext";
 
 export default function Contacts() {
   const navigate = useNavigate();
-  const { onSubmitContacts, user } = useContext(AuthContext);
+  const { onSubmitContacts } = useContext(ContactsContext);
+  const { user } = useContext(AuthContext);
 
   const formSchema = yup.object().shape({
     name: yup

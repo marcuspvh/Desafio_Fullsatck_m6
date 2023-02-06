@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
 import { createContext, useEffect, useState } from "react";
@@ -7,13 +7,16 @@ import { AxiosError } from "axios";
 import { IUser } from "../Interfaces/IUser";
 import { IPost } from "../Interfaces/IPost";
 import { IError } from "../Interfaces/IError";
-import { ICustomizedState } from "../Interfaces/ICustomizedState";
 import { IAuthContext } from "../Interfaces/IAuthContext";
 import { IAuthProvider } from "../Interfaces/IAuthProvider";
-import { IContacts } from "../Interfaces/IContacts";
+// import { IContacts } from "../Interfaces/IContacts";
 import { IUserLogin } from "../Interfaces/IUserLogin";
 import { IDataLogin } from "../Interfaces/IDataLogin";
-import { IPostContacts } from "../Interfaces/IPostContacts";
+import { IContacts } from "../Interfaces/IContacts";
+// import { ILIstContacts } from "../Interfaces/IListContacts";
+// import { IContacts } from "../Interfaces/IContacts";
+// import { IReportContacts } from "../Interfaces/IReportContacts";
+// import { IPostContacts } from "../Interfaces/IPostContacts";
 
 
 
@@ -21,13 +24,16 @@ import { IPostContacts } from "../Interfaces/IPostContacts";
   export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
   
   function AuthProvider({ children }: IAuthProvider) {
-      const [isLoading, setIsLoading] = useState(false);
+      
+    
+    const [isLoading, setIsLoading] = useState(false);
       const [user, setUser] = useState<IUser>({} as IUser);
       const [loading, setLoading] = useState(true);
       const [login, setLogin] = useState(false);
       const [token, setToken] = useState("");
+      const [contacts, setContacts] = useState<IContacts[]>([] as IContacts[]);
+      // const {report, setReport} = useState<IReportContacts[]>([] as IReportContacts[]);
       
-      console.log(user)
       
       // const location = useLocation();
       const navigate = useNavigate();
@@ -44,6 +50,7 @@ import { IPostContacts } from "../Interfaces/IPostContacts";
               const user = JSON.parse(localStorage.getItem("@USER")!);
 
               setUser(user)
+
 
             } catch (error) {
               console.error(error);
@@ -62,13 +69,14 @@ import { IPostContacts } from "../Interfaces/IPostContacts";
           .then((response) => {
             const { token, account } = response.data;
 
-            console.log(response);
+            // console.log(response);
             setUser(account);
             setToken(token);
+            // setReport(report)
             localStorage.setItem("@TOKEN", token);
             localStorage.setItem("@USER", JSON.stringify(account));
             toast.success("login efetuado com sucesso");
-            navigate("/contacts", { replace: true });
+            navigate("/dashboard", { replace: true });
             
           })
           .catch((_) => toast.error("Ops, Algo deu errado"));
@@ -83,7 +91,7 @@ import { IPostContacts } from "../Interfaces/IPostContacts";
         await api
         .post<IPost>("/users", newData)
         .then((response) => {
-          console.log(`Dados do Register:`, response);
+          // console.log(`Dados do Register:`, response);
           toast.success("Cadastro efetuado com sucesso");
           navigate("/login");
         })
@@ -91,25 +99,25 @@ import { IPostContacts } from "../Interfaces/IPostContacts";
         console.log(data)
     };
 
-    const onSubmitContacts = async(data:IContacts) => {
-      console.log(data);   
-    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  //   const onSubmitContacts = async(data:IContacts) => {
+  //     console.log(data);   
+  //   api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-    await api
-    .post<IPostContacts>("/contacts", data)
-    .then((response) => {
+  //   await api
+  //   .post<IPostContacts>("/contacts", data)
+  //   .then((response) => {
       
-      toast.success("Cadastro efetuado com sucesso");
-      navigate("/Dasboard");
-    })
-    .catch((error: AxiosError<IError>) => {
-      toast.error("Ops, Algo deu errado")
-      console.log(error)
-    }
-    );
+  //     toast.success("Cadastro efetuado com sucesso");
+  //     navigate("/Dasboard");
+  //   })
+  //   .catch((error: AxiosError<IError>) => {
+  //     toast.error("Ops, Algo deu errado")
+  //     console.log(error)
+  //   }
+  //   );
     
     
-  };
+  // };
   
     return (
       <AuthContext.Provider
@@ -117,14 +125,20 @@ import { IPostContacts } from "../Interfaces/IPostContacts";
             isLoading,
             setIsLoading,
             user,
+            token,
+            setToken,
             login,
             setLogin,
             loading,
             setLoading,
             onSubmitRegister,
             onSubmitLogin,
-            onSubmitContacts
-           
+            contacts,
+            setContacts,
+            // setReport,
+            // report,
+            
+            
          
         }}
       >

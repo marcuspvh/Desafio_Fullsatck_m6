@@ -1,3 +1,5 @@
+import { IContacts } from "./IContacts"
+
 export interface IUser {
     id: string
     name: string
@@ -8,4 +10,5 @@ export interface IUser {
     isAdm: boolean
     createdAt: Date
     updatedAt: Date
+    contacts: IContacts[]
 }

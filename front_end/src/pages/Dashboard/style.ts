@@ -7,11 +7,11 @@ export const ContainerDashboard = styled.div`
   width: 100%;
 
 .dashMain{
-    width: 900px;
+    width: 100%;
     height: auto;
     flex-wrap: wrap;
     padding: 0;
-    background-color: #F8F9FA;
+    background-color: #212529;
 }
 
 .divHomeHeader{
@@ -29,7 +29,7 @@ export const ContainerDashboard = styled.div`
 .dashHeader{
 
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: row;
     align-items: center;
     width: 100%;
@@ -38,14 +38,23 @@ export const ContainerDashboard = styled.div`
     /* margin-top: 10%; */
     margin-bottom: 5px;
     
+
+    
+}
+
+.spanDashHeader{
+  margin-left: 50px;
+
 }
 .btnSair{
     background-color: #262b31;
     color: #F8F9FA;
     width: 67px;
     height: 40px;
-    border: none;
+    // border-radius: 4px black;
+    // border-color: black;
     cursor: pointer;
+    margin-right: 50px;
 }
 .btnSair:hover{
     -webkit-transform: scale(1.1);
@@ -56,15 +65,33 @@ export const ContainerDashboard = styled.div`
 }
 .dashbody{
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 100px;
+    height: auto;
     background-color: #121214;
     /* margin-top: 10%; */
     margin-bottom: 20px;
     flex-wrap: wrap;
+    color: rgb(83, 177, 231);
+}
+
+.h2Dashbody{
+  height: 25px;
+  font-weight: bold ; 
+
+}
+.divDashbody{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  background-color: #121214;
+  
+
 }
 .h4body{
     font-size: 1rem;
@@ -74,13 +101,23 @@ export const ContainerDashboard = styled.div`
 }
 .spanBody{
     font-size: 1.3rem;
-    color: white;
-    margin-top: 30px;
-    margin-bottom: 20px;
+    font-weight: bold ;
+    
+    // margin-top: 20px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 .spanBody1{
-    font-size: 0.7rem;
-    color: #868E96;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10px;
+  font-size: 1rem;
+  
+  margin-bottom: 30px;
 }
 .dashFooter{
     display: flex;
@@ -94,6 +131,8 @@ export const ContainerDashboard = styled.div`
     margin-bottom: 50px;
     color: azure;
 }
+
+
 .pFooter{
     color: white;
     margin-bottom: 55%;
