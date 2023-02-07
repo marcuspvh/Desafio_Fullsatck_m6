@@ -9,8 +9,6 @@ export const ContainerDashboard = styled.div`
 .dashMain{
     width: 100%;
     height: auto;
-    flex-wrap: wrap;
-    padding: 0;
     background-color: #212529;
 }
 
@@ -24,7 +22,7 @@ export const ContainerDashboard = styled.div`
     /* margin-top: 50px; */
     
   
-}
+ }
 
 .dashHeader{
 
@@ -77,9 +75,10 @@ export const ContainerDashboard = styled.div`
     color: rgb(83, 177, 231);
 }
 
-.h2Dashbody{
-  height: 25px;
-  font-weight: bold ; 
+.spanDashbody{
+  height: auto;
+  font-size: 2rem;
+  font-weight: bold;
 
 }
 .divDashbody{
@@ -93,12 +92,7 @@ export const ContainerDashboard = styled.div`
   
 
 }
-.h4body{
-    font-size: 1rem;
-    color: azure;
-    margin-right: 10px;
-    margin-left: 10px;
-}
+
 .spanBody{
     font-size: 1.3rem;
     font-weight: bold ;
@@ -139,35 +133,88 @@ export const ContainerDashboard = styled.div`
     margin-top: 50px;
 }
 
+@media (min-width: 320px) {
+    .dashMain{
+      width: 320px;
+      flex-wrap: wrap; 
+     }
+     .spanDashbody{
+      font-size: 25px;
+    }
+    .spanBody{
+      font-size: 12px;
+    }
+    .tecH3{
+      font-size: 12px;
+    }
+
+
+  }
 @media (min-width: 375px) {
-    .main{
+    .dashMain{
       width: 365px;
       flex-wrap: wrap;
-        }
+     }
+     .spanDashbody{
+      font-size: 25px;
+    }
+    .spanBody{
+      font-size: 12px;
+    }
+    .tecH3{
+      font-size: 15px;
+    }
   }
 
   @media (min-width: 425px) {
-    .main{
+    .dashMain{
       width: 425px;
       flex-wrap: wrap;
         }
+    .spanDashbody{
+      font-size: 30px;
+    }
+    .spanBody{
+      font-size: 15px;
+    }
+    .tecH3{
+      font-size: 15px;
+    }
   }
 @media (min-width: 768px) {
-    .main{
+  .dashMain{
       width: 768px;
       flex-wrap: wrap;
         }
+        .spanBody{
+      font-size: 15px;
+    }
+    .tecH3{
+      font-size: 15px;
+    }
   }
   @media (min-width: 1024px) {
-    .main{
+    .dashMain{
       width: 1024px;
       flex-wrap: wrap;
         }
+        .spanBody{
+      font-size: 15px;
+    }
+    .tecH3{
+      font-size: 15px;
+    }
   }
   @media (min-width: 1440) {
-    .main{
+    .dashMain{
       width: 1440px;
       flex-wrap: wrap;
         }
+        .spanBody{
+      font-size: 15px;
+    }
+    .tecH3{
+      font-size: 15px;
+    }
   }
 `

@@ -21,6 +21,7 @@ export interface IAuthContext {
   setIsLoading: (state: boolean) => void;
   contacts: IContacts[];
   setContacts: (value:IContacts[])=>void;
+  getContactsByUser:()=>void;
   // report: IReportContacts[];
   // setReport: (state: IReportContacts[]) => void;
   // report: IReportContacts[];

@@ -1,5 +1,6 @@
 import { useContext } from "react"
-import { ContainerReportContacts } from "./style";
+import { ContainerReportContacts, DivContainer } from "./style";
+
 import {FaRegTrashAlt} from "react-icons/fa"
 import { ContactsContext } from "../../context/ContactsContext";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +10,7 @@ import api from "../../services/api";
 
 
 export default function ReportContacts() {
-    const { token, contacts } = useAuth();
+    const { user, token, contacts } = useAuth();
     
     const navigate = useNavigate();
     const {removeContact} = useContext(ContactsContext)
@@ -20,7 +21,7 @@ api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   
   return (
     <ContainerReportContacts>
-      <div>
+      
         <div className="tecHeader">
           <span className="tecSpan">Contatos</span>
           <button 
@@ -31,13 +32,12 @@ api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
           onClick={()=> setIsOpenModal(!isOpenModal)}
           className="btnTecAdd">+</button> */}
         </div>
-        <div className="divContainer">
+        <DivContainer>
             <ul className="tecContainer">
             
             {contacts.map((elem) => (
                 
-                <li
-                key={elem.userId}>
+                <li key={user.id}>
                 <h3 className="tecH3">{elem.name}</h3>
                 <div className="leftCard">
                 <p className="tecP">{elem.telephone}</p>
@@ -47,11 +47,11 @@ api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
                 ><FaRegTrashAlt /></button>
                 </div>
                 </li>
-                ))
-                }   
+            ))
+            }   
             </ul>
-        </div>
-      </div>
+        
+      </DivContainer>
     </ContainerReportContacts>
     
     )

@@ -7,24 +7,29 @@ import  ReportContacts  from "../../components/ReportContacts"
 
 export default function Dashboard() {
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  const { user, setContacts } = useContext(AuthContext);
   
+  function handleLogout(){
+    localStorage.clear();
+    setContacts([]);
+    navigate("/login")
+
+  }
+
   
   // console.log(`Dashboard`, users);
   return user? (
     <ContainerDashboard>
       <div className="dashMain">
-        <div className="divHomeHeader">
-          <p>Home</p>
-        </div>
+       
         <div className="dashHeader">
           <span className="spanDashHeader" >AGENDA DE CONTATOS</span>
-          <button onClick={() => navigate("/login")} className="btnSair">
+          <button onClick={() => handleLogout()} className="btnSair">
             Sair
           </button>
         </div>
         <div className="dashbody">
-          <h1 className="h2Dashbody">Cliente:</h1>
+          <span className="spanDashbody">Cliente:</span>
           <div className="divDashbody">
           <span className="spanBody">{user?.name}</span>
           <span className="spanBody">{user?.telephone}</span>

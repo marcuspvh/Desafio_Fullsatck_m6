@@ -29,21 +29,24 @@ function ContactsProvider({ children }: IContactsProviderProps) {
   await api
   .post<IContacts>("/contacts", data)
   .then((response) => {
-    const { data: contact } = response;
-    setContacts([...contacts, contact]);
+  
+  toast.success("Cadastro efetuado com sucesso");
 
-    toast.success("Cadastro efetuado com sucesso");
-    navigate("/dashboard");
-    
-    console.log(contacts)
+  const { data: contact } = response;
+  setContacts([...contacts, contact]);
 
+  // getContactsByUser()
+  navigate("/dashboard")
+  
   })
   .catch((error: AxiosError<IError>) => {
     toast.error("Ops, Algo deu errado")
     console.log(error)
-  }
-  )
+  })
   };
+
+  
+
 
   useEffect(() => {
     if (contacts) {
@@ -58,13 +61,16 @@ function ContactsProvider({ children }: IContactsProviderProps) {
       await api.delete(`/contacts/${contact_id}`);
        
       const newContacts = contacts.filter((elem)=>( elem.id !== contact_id ))
-      
-           
+                 
       setContacts(newContacts);
     } catch (error) {
       console.error(error);
     }
   }
+
+
+
+  
 
   return (
     <ContactsContext.Provider

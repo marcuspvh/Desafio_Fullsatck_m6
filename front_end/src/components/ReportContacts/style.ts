@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 
 export const ContainerReportContacts = styled.div`
-  background-color: #000000;
+background-color: #000000;
   color: #F8F9FA;
-  width: 100;
+  width: 100%;
   height: auto;
   background-color: #121214;
   padding: 0;
@@ -16,7 +16,7 @@ export const ContainerReportContacts = styled.div`
     flex-direction: row;
     justify-content: space-between;
 
-background-color: #212529;
+    background-color: #212529;
     align-items: center;
     position: relative;
     margin-bottom: 20px;
@@ -25,7 +25,8 @@ background-color: #212529;
 .tecSpan{
     margin-left: 50px;
     color: #F8F9FA;
-    font-size: 16px;
+    font-size: 20px;
+    font-weight:bold ;
 }
 .btnTecAdd{
     background-color: #212529;
@@ -45,23 +46,25 @@ background-color: #212529;
     transform: scale(1.1);
     border: 3px solid rgb(83, 177, 231);
     border-radius: 5%;
+}
+`
 
 
-.divContainer{
+export const DivContainer = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; */
     list-style-type: none;
 
     background-color: #212529;
     padding: 0;    
-}
+
 .tecContainer{
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -76,7 +79,7 @@ li{
     width: 90%;
     height: 49px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     background-color: #121214;
@@ -96,7 +99,7 @@ li{
 .leftCard{
     width: 130px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-right: 10px;
@@ -112,36 +115,5 @@ li{
     font-size: 13px;
 
 }
-
-  @media (min-width: 375px) {
-    .main{
-      width: 365px;
-      flex-wrap: wrap;
-        }
-  }
-
-  @media (min-width: 425px) {
-    .main{
-      width: 425px;
-      flex-wrap: wrap;
-        }
-  }
-@media (min-width: 768px) {
-    .main{
-      width: 768px;
-      flex-wrap: wrap;
-        }
-  }
-  @media (min-width: 1024px) {
-    .main{
-      width: 1024px;
-      flex-wrap: wrap;
-        }
-  }
-  @media (min-width: 1440) {
-    .main{
-      width: 1440px;
-      flex-wrap: wrap;
-        }
-  }
 `
+

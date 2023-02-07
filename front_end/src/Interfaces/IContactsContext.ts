@@ -8,6 +8,7 @@ export interface IContactsContext {
   // contacts: IContacts[];
   // setContacts: (value:IContacts[])=>void;
   removeContact: (value:string)=>void;
+  
   // isOpenModal: boolean;
   // setIsOpenModal: (value:boolean)=>void;
 }

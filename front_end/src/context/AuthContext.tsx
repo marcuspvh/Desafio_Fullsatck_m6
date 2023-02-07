@@ -9,14 +9,10 @@ import { IPost } from "../Interfaces/IPost";
 import { IError } from "../Interfaces/IError";
 import { IAuthContext } from "../Interfaces/IAuthContext";
 import { IAuthProvider } from "../Interfaces/IAuthProvider";
-// import { IContacts } from "../Interfaces/IContacts";
 import { IUserLogin } from "../Interfaces/IUserLogin";
 import { IDataLogin } from "../Interfaces/IDataLogin";
 import { IContacts } from "../Interfaces/IContacts";
-// import { ILIstContacts } from "../Interfaces/IListContacts";
-// import { IContacts } from "../Interfaces/IContacts";
-// import { IReportContacts } from "../Interfaces/IReportContacts";
-// import { IPostContacts } from "../Interfaces/IPostContacts";
+
 
 
 
@@ -24,6 +20,7 @@ import { IContacts } from "../Interfaces/IContacts";
   export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
   
   function AuthProvider({ children }: IAuthProvider) {
+    
       
     
     const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +29,7 @@ import { IContacts } from "../Interfaces/IContacts";
       const [login, setLogin] = useState(false);
       const [token, setToken] = useState("");
       const [contacts, setContacts] = useState<IContacts[]>([] as IContacts[]);
-      // const {report, setReport} = useState<IReportContacts[]>([] as IReportContacts[]);
+      
       
       
       // const location = useLocation();
@@ -51,11 +48,9 @@ import { IContacts } from "../Interfaces/IContacts";
 
               setUser(user)
 
-
             } catch (error) {
               console.error(error);
             }
-           
           }
         }
         loadUser();
@@ -72,14 +67,20 @@ import { IContacts } from "../Interfaces/IContacts";
             // console.log(response);
             setUser(account);
             setToken(token);
-            // setReport(report)
+                        
             localStorage.setItem("@TOKEN", token);
             localStorage.setItem("@USER", JSON.stringify(account));
+          })
+          .then((response) => {
+
+            getContactsByUser()
+
             toast.success("login efetuado com sucesso");
             navigate("/dashboard", { replace: true });
             
           })
-          .catch((_) => toast.error("Ops, Algo deu errado"));
+          .catch((error: AxiosError<IError>)=>{ toast.error("Ops, Algo deu errado");
+          console.log(error)})
       };
     
 
@@ -91,33 +92,37 @@ import { IContacts } from "../Interfaces/IContacts";
         await api
         .post<IPost>("/users", newData)
         .then((response) => {
-          // console.log(`Dados do Register:`, response);
-          toast.success("Cadastro efetuado com sucesso");
-          navigate("/login");
+
+        toast.success("Cadastro efetuado com sucesso");
+        navigate("/login");
         })
-        .catch((error: AxiosError<IError>) => toast.error("Ops, Algo deu errado"));
-        console.log(data)
+        .catch((error: AxiosError<IError>) => {
+          toast.error("Ops, Algo deu errado")
+          console.log(error)
+        })
+        
     };
 
-  //   const onSubmitContacts = async(data:IContacts) => {
-  //     console.log(data);   
-  //   api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-  //   await api
-  //   .post<IPostContacts>("/contacts", data)
-  //   .then((response) => {
+    async function getContactsByUser(){
       
-  //     toast.success("Cadastro efetuado com sucesso");
-  //     navigate("/Dasboard");
-  //   })
-  //   .catch((error: AxiosError<IError>) => {
-  //     toast.error("Ops, Algo deu errado")
-  //     console.log(error)
-  //   }
-  //   );
-    
-    
-  // };
+      const localUser = JSON.parse(localStorage.getItem("@USER")!)
+      
+      await api
+      
+      .get<IUser>(`users/${localUser.id}/contacts`)
+      .then((response) => {
+
+        const { data } = response;
+        setContacts(data.contacts);
+            
+      })
+      .catch((error: AxiosError<IError>) => {
+        toast.error("Ops, Algo deu errado")
+        console.log(error)
+      }
+      )
+    }
   
     return (
       <AuthContext.Provider
@@ -135,6 +140,7 @@ import { IContacts } from "../Interfaces/IContacts";
             onSubmitLogin,
             contacts,
             setContacts,
+            getContactsByUser
             // setReport,
             // report,
             
